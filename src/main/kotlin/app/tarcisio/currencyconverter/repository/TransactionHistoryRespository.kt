@@ -1,6 +1,6 @@
 package app.tarcisio.currencyconverter.repository
 
-import app.tarcisio.currencyconverter.repository.entity.TransactionHistoryEntity
+import app.tarcisio.currencyconverter.entity.TransactionHistoryEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface TransactionHistoryRespository : JpaRepository<TransactionHistoryEntity, Long> {

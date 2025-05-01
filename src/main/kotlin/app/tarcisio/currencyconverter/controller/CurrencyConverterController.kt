@@ -5,7 +5,9 @@ import app.tarcisio.currencyconverter.dto.application.ExchangeResponse
 import app.tarcisio.currencyconverter.service.CurrencyConverterService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -18,7 +20,7 @@ class CurrencyConverterController(
     @PostMapping("/exchange")
     @Operation(
         summary = "Realiza a conversão de moeda",
-        description = "Converte um valor de uma moeda para outra usando taxas de conversão atualizadas."
+        description = "Retorna o valor de conversão entre moedas."
     )
     fun peformExchange(
         @RequestBody exchangeRequest: ExchangeRequest

@@ -5,8 +5,10 @@ import app.tarcisio.currencyconverter.common.TransactionalContext
 import app.tarcisio.currencyconverter.dto.application.ExchangeRequest
 import app.tarcisio.currencyconverter.dto.application.ExchangeResponse
 import app.tarcisio.currencyconverter.dto.web.ExchangeRateApiResponse
+import app.tarcisio.currencyconverter.entity.TransactionHistoryEntity
 import app.tarcisio.currencyconverter.mapper.ExchangeMapper
 import app.tarcisio.currencyconverter.repository.TransactionHistoryRespository
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,20 +16,18 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class CurrencyConverterService(
     private val client: ExchangeRateClient,
-    private val transactionHistoryRespository: TransactionHistoryRespository
+    private val transactionHistoryRespository: TransactionHistoryRespository,
+    @Value("\${exchange-rate-api.api-key}") private val exchangeApiKey: String
 ){
 
     fun peformExchange(request: ExchangeRequest): ResponseEntity<ExchangeResponse> {
 
         val result: ExchangeRateApiResponse? = client.getExchange(
-            TransactionalContext(request)
-                .addHeader("apiKey", "FI2hQ6TsSiZmUPmsQofjv5G2mGJbGs2R")
+            TransactionalContext(request).addHeader("apiKey", exchangeApiKey)
         )
 
-        saveTransactionHistory(result, request.userId)
-
-        val response = ExchangeMapper.mapToExchangeResponse(result)
-        return ResponseEntity.ok(response)
+        val savedEntity = saveTransactionHistory(result, request.userId)
+        return ResponseEntity.ok(ExchangeMapper.mapToExchangeResponse(savedEntity))
     }
 
     fun getTransactions(userId: Long): ResponseEntity<List<ExchangeResponse>> {
@@ -39,9 +39,9 @@ class CurrencyConverterService(
     }
 
     @Transactional
-    fun saveTransactionHistory(data : ExchangeRateApiResponse?, userId: Long) {
+    fun saveTransactionHistory(data : ExchangeRateApiResponse?, userId: Long?) : TransactionHistoryEntity {
         val mappedResult = ExchangeMapper.mapToTransactionHistoryEntity(data)
-        transactionHistoryRespository.save(mappedResult.copy(userId = userId))
+        return transactionHistoryRespository.save(mappedResult.copy(userId = userId))
     }
 
 }

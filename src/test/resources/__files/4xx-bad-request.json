@@ -1,0 +1,7 @@
+{
+    "timestamp": "2019-01-17T16:12:45.977+0000",
+    "status": 400,
+    "error": "Bad Request",
+    "message": "Error in the request!",
+    "path": "/my-endpoint-with-exceptions"
+}

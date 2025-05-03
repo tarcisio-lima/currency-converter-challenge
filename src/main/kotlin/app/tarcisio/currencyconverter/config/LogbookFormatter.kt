@@ -118,7 +118,7 @@ class LogbookFormatter : HttpLogFormatter {
     }
 
     private fun headersIsNotEmpty(message: HttpMessage): Boolean {
-        return !message.headers.isEmpty()
+        return message.headers.isNotEmpty()
     }
 
     private fun getQueryParamsIfExists(request: HttpRequest): String {

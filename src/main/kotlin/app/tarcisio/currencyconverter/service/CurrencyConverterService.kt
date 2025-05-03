@@ -20,13 +20,14 @@ class CurrencyConverterService(
     @Value("\${exchange-rate-api.api-key}") private val exchangeApiKey: String
 ){
 
-    fun peformExchange(request: ExchangeRequest): ResponseEntity<ExchangeResponse> {
+    @Transactional
+    fun peformExchange(request: TransactionalContext<ExchangeRequest>): ResponseEntity<ExchangeResponse> {
 
         val result: ExchangeRateApiResponse? = client.getExchange(
-            TransactionalContext(request).addHeader("apiKey", exchangeApiKey)
+            request.addHeader("apiKey", exchangeApiKey)
         )
+        val savedEntity = saveTransactionHistory(result, request.get().userId)
 
-        val savedEntity = saveTransactionHistory(result, request.userId)
         return ResponseEntity.ok(ExchangeMapper.mapToExchangeResponse(savedEntity))
     }
 
@@ -38,7 +39,6 @@ class CurrencyConverterService(
             ResponseEntity.notFound().build()
     }
 
-    @Transactional
     fun saveTransactionHistory(data : ExchangeRateApiResponse?, userId: Long?) : TransactionHistoryEntity {
         val mappedResult = ExchangeMapper.mapToTransactionHistoryEntity(data)
         return transactionHistoryRespository.save(mappedResult.copy(userId = userId))

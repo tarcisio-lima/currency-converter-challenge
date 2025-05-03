@@ -7,5 +7,5 @@ data class ErrorResponse(
     val error: String,
     val message: String,
     val timeStamp: LocalDateTime,
-    val trace: String?
+    val trace: String? = null
 )

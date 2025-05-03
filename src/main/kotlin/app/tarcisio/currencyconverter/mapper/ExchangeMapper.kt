@@ -3,7 +3,6 @@ package app.tarcisio.currencyconverter.mapper
 import app.tarcisio.currencyconverter.dto.application.ExchangeResponse
 import app.tarcisio.currencyconverter.dto.web.ExchangeRateApiResponse
 import app.tarcisio.currencyconverter.entity.TransactionHistoryEntity
-import app.tarcisio.currencyconverter.utils.CurrencyUtils
 import app.tarcisio.currencyconverter.utils.CurrencyUtils.calculateCurrencyValue
 import java.math.RoundingMode
 import java.time.LocalDateTime
@@ -17,7 +16,7 @@ object ExchangeMapper {
             id = null,
             userId = 0,
             sourceCurrency = value?.query?.from,
-            amount = value?.query?.amount,
+            amount = value?.query?.amount?.setScale(2, RoundingMode.HALF_EVEN),
             targetCurrency = value?.query?.to,
             exchangeRate = value?.info?.rate?.toDouble(),
             registrationDate = value?.date.let { localDate -> LocalDateTime.of(localDate, LocalTime.now())
@@ -32,7 +31,7 @@ object ExchangeMapper {
             id = value.id,
             userId = value.userId,
             sourceCurrency = value.sourceCurrency,
-            sourceAmount = value.amount,
+            sourceAmount = value.amount?.setScale(2, RoundingMode.HALF_EVEN),
             targetCurrency = value.targetCurrency,
             exchangeRate = value.exchangeRate,
             registrationDate = value.registrationDate,

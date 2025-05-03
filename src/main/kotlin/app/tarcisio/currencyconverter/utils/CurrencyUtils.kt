@@ -2,6 +2,7 @@ package app.tarcisio.currencyconverter.utils
 
 import app.tarcisio.currencyconverter.exception.IllegalParameterCurrencyCalcException
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 object CurrencyUtils {
 
@@ -12,7 +13,7 @@ object CurrencyUtils {
      */
     fun calculateCurrencyValue(amount: BigDecimal?, exchangeRate: Double?): BigDecimal {
         return if (amount != null && exchangeRate != null)
-            amount.times(BigDecimal(exchangeRate))
+            amount.times(BigDecimal(exchangeRate)).setScale(2, RoundingMode.HALF_EVEN)
         else
             throw IllegalParameterCurrencyCalcException()
     }

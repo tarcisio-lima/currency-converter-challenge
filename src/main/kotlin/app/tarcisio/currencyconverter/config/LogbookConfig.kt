@@ -5,11 +5,7 @@ import org.springframework.context.annotation.Configuration
 import org.zalando.logbook.HeaderFilter
 import org.zalando.logbook.HttpRequest
 import org.zalando.logbook.Logbook
-import org.zalando.logbook.core.Conditions
-import org.zalando.logbook.core.DefaultHttpLogWriter
-import org.zalando.logbook.core.DefaultSink
-import org.zalando.logbook.core.DefaultStrategy
-import org.zalando.logbook.core.HeaderFilters
+import org.zalando.logbook.core.*
 import java.util.function.Predicate
 
 /**
@@ -28,7 +24,8 @@ class LogbookConfig {
                     DefaultHttpLogWriter()
                 )
             )
-            .headerFilter(apyKeyMask())
+            .headerFilter(maskApiKey())
+            .headerFilter(excludeUnnecessaryHeaders())
             .condition(conditions())
             .build()
     }
@@ -36,7 +33,23 @@ class LogbookConfig {
     /**
      * Obfusca dados sensíveis que possam transitar nos logs
      */
-    private fun apyKeyMask(): HeaderFilter = HeaderFilters.replaceHeaders("apiKey", "*****")
+    private fun maskApiKey(): HeaderFilter = HeaderFilters.replaceHeaders("apiKey", "*****")
+
+    private fun excludeUnnecessaryHeaders(): HeaderFilter {
+        return HeaderFilters.removeHeaders { headerKey: String? ->
+            val headers: List<String> = mutableListOf(
+                "accept",
+                "content-length",
+                "content-type"
+            )
+            headers.stream().noneMatch { listKey: String ->
+                listKey.equals(
+                    headerKey,
+                    ignoreCase = true
+                )
+            }
+        }
+    }
 
     /**
      * Elimina listeners de paths padrões do framework nos logs

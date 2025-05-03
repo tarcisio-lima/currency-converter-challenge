@@ -1,4 +1,4 @@
-package app.tarcisio.currencyconverter.repository.entity
+package app.tarcisio.currencyconverter.entity
 
 import jakarta.persistence.*
 import java.math.BigDecimal
@@ -9,11 +9,11 @@ import java.time.LocalDateTime
 data class TransactionHistoryEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     val id: Long?,
     val userId: Long?,
     val sourceCurrency: String?,
+    val amount: BigDecimal?,
     val targetCurrency: String?,
-    val exchangeRate: BigDecimal?,
+    val exchangeRate: Double?,
     val registrationDate: LocalDateTime?
 )

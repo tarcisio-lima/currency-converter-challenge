@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "query": {
+    "from": "USD",
+    "to": "BRL",
+    "amount": 100
+  },
+  "info": {
+    "timestamp": 1746282004,
+    "rate": 5.656604
+  },
+  "date": "2025-05-03",
+  "result": 565.6604
+}

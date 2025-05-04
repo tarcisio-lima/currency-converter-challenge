@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "userId": 1,
+  "sourceCurrency": "USD",
+  "sourceAmount": 100.0,
+  "targetCurrency": "BRL",
+  "targetAmount": 565.66,
+  "exchangeRate": 5.656604,
+  "registrationDate": "2025-05-03 11:20:15"
+}

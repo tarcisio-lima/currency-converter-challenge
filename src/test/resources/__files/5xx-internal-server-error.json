@@ -1,0 +1,7 @@
+{
+    "timestamp": "2019-01-17T16:12:45.977+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "Fatal server error!",
+    "path": "/my-endpoint-with-exceptions"
+}

@@ -40,7 +40,8 @@ class LogbookConfig {
             val headers: List<String> = mutableListOf(
                 "accept",
                 "content-length",
-                "content-type"
+                "content-type",
+                "apiKey"
             )
             headers.stream().noneMatch { listKey: String ->
                 listKey.equals(

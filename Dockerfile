@@ -20,7 +20,6 @@ RUN chmod +x gradlew
 # Executa o Gradle para construir a aplicação
 RUN ./gradlew bootJar
 
-# Cria uma imagem menor para a runtime
 FROM amazoncorretto:21-alpine
 
 # Define o diretório de trabalho

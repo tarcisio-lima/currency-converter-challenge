@@ -1,5 +1,5 @@
 # Usa uma imagem base com Java 21 já instalado
-FROM openjdk:21-jdk-slim AS build
+FROM amazoncorretto:21-alpine-jdk AS build
 LABEL authors="Tarcisio de Lima"
 
 # Define o diretório de trabalho dentro do container
@@ -18,7 +18,7 @@ COPY src ./src
 RUN ./gradlew bootJar
 
 # Cria uma imagem menor para a runtime
-FROM openjdk:21-jre-slim
+FROM amazoncorretto:21-alpine
 
 # Define o diretório de trabalho
 WORKDIR /app
@@ -30,4 +30,4 @@ COPY --from=build /app/build/libs/*.jar app.jar
 EXPOSE 8080
 
 # Comando para executar a aplicação quando o container iniciar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dfile.encoding=UTF8", "-Duser.timezone=America/Sao_Paulo", "-jar", "app.jar"]

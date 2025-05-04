@@ -14,6 +14,9 @@ COPY settings.gradle .
 # Copia o código fonte
 COPY src ./src
 
+# Dá permissão de execução ao gradlew
+RUN chmod +x gradlew
+
 # Executa o Gradle para construir a aplicação
 RUN ./gradlew bootJar
 

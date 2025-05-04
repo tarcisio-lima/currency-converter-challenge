@@ -20,22 +20,22 @@ Este é um micro-serviço construído com Spring Boot que tem como finalidade re
 
 1.  **Importar o Projeto:**
     * Abra o IntelliJ IDEA.
-    * Clique em `File` -> `Open...` e selecione o diretório raiz do seu projeto.
+    * Clique em `File` -> `Open...` e selecione o diretório raiz do projeto.
     * O IntelliJ IDEA detectará automaticamente o arquivo `build.gradle.kts` (ou `build.gradle`) e configurará o projeto como um projeto Gradle.
 
 2.  **Construir o Projeto (Opcional):**
-    * No painel `Gradle` (geralmente à direita), localize a tarefa `build` dentro do seu projeto e execute-a (duplo clique). Isso irá baixar as dependências e construir o projeto. O IntelliJ IDEA geralmente faz isso automaticamente.
+    * No painel `Gradle` (geralmente à direita), localize a tarefa `build` dentro do projeto e execute-a (duplo clique). Isso irá baixar as dependências e construir o projeto. O IntelliJ IDEA geralmente faz isso automaticamente.
 
 3.  **Executar a Aplicação Spring Boot:**
-    * No painel `Project` (geralmente à esquerda), navegue até a classe principal da sua aplicação Spring Boot (geralmente anotada com `@SpringBootApplication`).
+    * No painel `Project` (geralmente à esquerda), navegue até a classe principal da aplicação Spring Boot (geralmente anotada com `@SpringBootApplication`).
     * Clique com o botão direito sobre a classe principal.
     * Selecione `Run '<sua_classe_principal>'`.
-    * O IntelliJ IDEA irá compilar e iniciar o seu micro-serviço Spring Boot. Você poderá acompanhar os logs na janela `Run`.
+    * O IntelliJ IDEA irá compilar e iniciar o micro-serviço Spring Boot. Você poderá acompanhar os logs na janela `Run`.
     * Certifique-se de que não haja outras aplicações rodando na mesma porta (geralmente 8080 por padrão, mas pode ser configurada em `application.properties` ou `application.yml`).
 
 ## Como Chamar os Endpoints da API 📞
 
-Você pode usar ferramentas como Postman 📬, Insomnia 😴, SoapUI 🧼 ou `curl` 💻 para interagir com os endpoints do seu micro-serviço. Abaixo estão exemplos de como chamar os endpoints definidos no seu `CurrencyConverterController`.
+Você pode usar ferramentas como Postman 📬, Insomnia 😴, SoapUI 🧼 ou `curl` 💻 para interagir com os endpoints do micro-serviço. Abaixo estão exemplos de como chamar os endpoints definidos em `CurrencyConverterController`.
 
 ### Endpoint: `/currency-converter/exchange` (POST) 📤
 
@@ -44,7 +44,7 @@ Este endpoint realiza a conversão de moeda.
 **Ferramenta: Postman/Insomnia**
 
 * **Método:** `POST`
-* **URL:** `http://localhost:8080/currency-converter/exchange` (assumindo que sua aplicação está rodando na porta 8080)
+* **URL:** `http://localhost:8080/currency-converter/exchange` (assumindo que aplicação está rodando na porta 8080)
 * **Body (JSON):**
 
     ```json
@@ -131,7 +131,7 @@ curl -X GET http://localhost:8080/currency-converter/transactions/123
 
 ## Acessando a Documentação da API com Swagger UI 🌐
 
-Este projeto utiliza o Swagger para gerar uma documentação interativa da API. Você pode acessar essa documentação através de um navegador web utilizando a seguinte URL (assumindo que sua aplicação esteja rodando na porta padrão 8080): `http://localhost:8080/swagger-ui/index.html`
+Este projeto utiliza o Swagger para gerar uma documentação interativa da API. Você pode acessar essa documentação através de um navegador web utilizando a seguinte URL (assumindo que aplicação esteja rodando na porta padrão 8080): `http://localhost:8080/swagger-ui/index.html`
 
 ---
 <p align="left">

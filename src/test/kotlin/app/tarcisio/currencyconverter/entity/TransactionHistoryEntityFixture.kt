@@ -13,7 +13,7 @@ object TransactionHistoryEntityFixture {
             sourceCurrency = "USD",
             amount = BigDecimal.valueOf(100.00),
             targetCurrency = "BRL",
-            exchangeRate = 5.0,
+            exchangeRate = BigDecimal(5.0),
             registrationDate = LocalDateTime.now()
         )
     }
@@ -25,7 +25,7 @@ object TransactionHistoryEntityFixture {
             sourceCurrency = "USD",
             amount = BigDecimal("10.00").setScale(2, RoundingMode.HALF_EVEN),
             targetCurrency = "BRL",
-            exchangeRate = 5.50,
+            exchangeRate = BigDecimal("5.50"),
             registrationDate = LocalDateTime.of(2020, 1, 1, 1, 0, 0).withNano(0)
         )
     }
@@ -37,7 +37,7 @@ object TransactionHistoryEntityFixture {
             sourceCurrency = "USD",
             amount = BigDecimal("100.50"),
             targetCurrency = "BRL",
-            exchangeRate = 5.077,
+            exchangeRate = BigDecimal(5.077),
             registrationDate = LocalDateTime.now()
         )
     }
@@ -49,7 +49,7 @@ object TransactionHistoryEntityFixture {
             sourceCurrency = "EUR",
             amount = BigDecimal("50.00"),
             targetCurrency = "USD",
-            exchangeRate = 1.0864,
+            exchangeRate = BigDecimal(1.0864),
             registrationDate = LocalDateTime.now().minusDays(1).withHour(15).withMinute(30).withSecond(0).withNano(0)
         )
     }

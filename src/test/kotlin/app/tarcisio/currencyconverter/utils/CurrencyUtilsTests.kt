@@ -12,7 +12,7 @@ internal class CurrencyUtilsTests {
     internal fun `calculateCurrencyValue should return the correct calculated value`() {
 
         val amount = BigDecimal("100.00")
-        val exchangeRate = 5.50
+        val exchangeRate = BigDecimal(5.50)
         val expectedValue = BigDecimal("550.00")
 
         val actualValue = CurrencyUtils.calculateCurrencyValue(amount, exchangeRate)
@@ -22,7 +22,7 @@ internal class CurrencyUtilsTests {
     @Test
     internal fun `calculateCurrencyValue should throw IllegalParameterCurrencyCalcException when amount is null`() {
 
-        val exchangeRate = 5.50
+        val exchangeRate = BigDecimal(5.50)
 
         assertThrows(IllegalParameterCurrencyCalcException::class.java) {
             CurrencyUtils.calculateCurrencyValue(null, exchangeRate)

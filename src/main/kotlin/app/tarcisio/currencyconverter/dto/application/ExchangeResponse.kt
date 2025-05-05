@@ -1,6 +1,5 @@
 package app.tarcisio.currencyconverter.dto.application
 
-import org.springframework.format.annotation.DateTimeFormat
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
@@ -11,7 +10,7 @@ data class ExchangeResponse(
     val sourceAmount: BigDecimal?,
     val targetCurrency: String?,
     val targetAmount: BigDecimal?,
-    val exchangeRate: Double?,
+    val exchangeRate: BigDecimal?,
     val registrationDate: LocalDateTime?
 )
 

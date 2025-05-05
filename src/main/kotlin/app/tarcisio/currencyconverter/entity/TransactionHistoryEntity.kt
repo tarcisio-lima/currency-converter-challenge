@@ -14,6 +14,6 @@ data class TransactionHistoryEntity(
     val sourceCurrency: String?,
     val amount: BigDecimal?,
     val targetCurrency: String?,
-    val exchangeRate: Double?,
+    val exchangeRate: BigDecimal?,
     val registrationDate: LocalDateTime?
 )

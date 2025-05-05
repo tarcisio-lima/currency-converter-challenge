@@ -14,7 +14,7 @@ object ExchangeResponseFixture {
             BigDecimal("100.00"),
             "BRL",
             BigDecimal("500.00"),
-            5.0,
+            BigDecimal(5.0),
             LocalDateTime.now()
         )
     }
@@ -26,7 +26,7 @@ object ExchangeResponseFixture {
             sourceCurrency = "USD",
             sourceAmount = BigDecimal("10.00").setScale(2, RoundingMode.HALF_EVEN),
             targetCurrency = "BRL",
-            exchangeRate = 5.50,
+            exchangeRate = BigDecimal("5.50"),
             registrationDate = LocalDateTime.of(2020, 1, 1, 1, 0),
             targetAmount = BigDecimal("55.00").setScale(2, RoundingMode.HALF_EVEN)
         )

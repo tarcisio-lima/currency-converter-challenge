@@ -18,7 +18,7 @@ object ExchangeMapper {
             sourceCurrency = value?.query?.from,
             amount = value?.query?.amount?.setScale(2, RoundingMode.HALF_EVEN),
             targetCurrency = value?.query?.to,
-            exchangeRate = value?.info?.rate?.toDouble(),
+            exchangeRate = value?.info?.rate,
             registrationDate = value?.date.let { localDate -> LocalDateTime.of(localDate, LocalTime.now())
                     .atZone(ZoneId.systemDefault())
                     .toLocalDateTime()

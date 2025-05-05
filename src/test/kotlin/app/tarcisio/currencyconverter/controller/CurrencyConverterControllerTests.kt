@@ -92,7 +92,7 @@ class CurrencyConverterControllerTests {
             ExchangeResponseFixture.example(),
             ExchangeResponseFixture.example().copy(
                 sourceCurrency = "EUR",
-                exchangeRate = 4.0,
+                exchangeRate = BigDecimal(4.0),
                 targetAmount = BigDecimal("400.00")
             )
         )
